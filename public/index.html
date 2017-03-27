@@ -31,3 +31,185 @@
     -->
   </body>
 </html>
+
+<!--引入reactjs文件-->
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+
+<!--引入react虚拟Dom-->
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<!--引入ES6转换器-->
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!--引入自定义js文件-->
+
+<script type="text/babel">
+	
+	/*//使用公用虚拟DOM的render指令为某个特定的元素进行赋值
+	ReactDOM.render(
+	<h1>Hello Jeason</h1>,
+	document.getElementById('root')
+	);
+	
+	//声明变量
+	const element = <h1> Hello Jeason </h1>;
+
+	//声明函数
+	function formatName(user){
+		
+		//使用三目运算实现条件的区分
+		return user ? user.firstName + ' ' + user.lastName : world;		
+		
+	}
+	
+	//声明对象	
+	const user = {
+		firstName : 'Jeason',
+		lastName : 'Zhang'		
+	};
+	
+	//声明变量 注意数据拼接方式	
+	const element = (
+		<h4>
+			Hello,{formatName(user)}!
+		</h4>
+	);
+	
+	//使用render指令为指定元素赋值
+	ReactDOM.render(
+		element,
+		document.getElementById('root')		
+	);
+	*/
+	/****************数组************************/
+	/*const names = ['Jeason','Lucy','Mark'];
+	
+	//JSX规则遇见<使用HtmL标签解析 遇到{}使用Javascript解析
+	ReactDOM.render(
+	<div>{
+		names.map(function(name){
+			
+			return <div>Hello,{name}!</div>
+			
+		})
+	}</div>,
+	document.getElementById('root')
+	);
+	
+	const arr=[
+		<h3> This is header </h3>,
+		<h4> This is subHeader </h4>,
+	];
+	
+	ReactDOM.render(
+	<div>{arr}</div>,
+	document.getElementById('root')
+	);*/
+	
+	/*****************组件************************/
+	/*//组件第一个字母必须大写 且只能包含一个顶层
+	var HelloMessage = React.createClass(
+		{
+			render:function() {
+				return <h4>Hello {this.props.name}</h4>;
+			}
+			
+		}
+	);
+	//组件属性添加时需要注意 class要使用className for要写出htmlFor class 和for是js的保留字
+	ReactDOM.render(
+		<HelloMessage	name = 'Jeason'/>,
+		document.getElementById('root')		
+	);*/
+	
+	
+	/******************特殊组件***********************/
+	//ol标签后面还有一个{}
+	/*var NodeLists =React.createClass({
+		render:function(){
+			return (
+				<ol>
+					{
+							React.Children.map(this.props.children,function(child){
+								return <li>{child}</li>;						
+							})								
+					}
+				
+				</ol>				
+			);			
+		}		
+	});
+	
+
+	ReactDOM.render(
+	<NodeLists>
+		<span>Jeason</span>
+		<span>Lucy</span>
+	</NodeLists>,
+	document.getElementById('root')	
+	);*/
+
+/****************************组件验证************************************/
+//类型错误是可以执行的？不够会报错	
+/*var MyTitle = React.createClass({
+	propTypes:{
+		title:React.PropTypes.string.isRequired,
+	},
+	
+	render:function(){
+		return <h3>{this.props.title}</h3>;
+	}
+	
+});
+const data=123;
+ReactDOM.render(
+<MyTitle title={data} ></MyTitle>,document.getElementById('root')
+);*/
+/****************获取默认属性并赋值***********************/
+/*var MyTitle = React.createClass({
+	getDefaultProps:function(){
+			return {
+				title:'Hello world'				
+			};
+	},
+	
+	render:function(){
+		return <h3>{this.props.title}</h3>;
+	}
+	
+});
+ReactDOM.render(
+	<MyTitle title='Jeason'/>,document.getElementById('root')
+);*/
+
+/****************************事件获取DOM节点*******************************/
+var MyComponent = React.createClass({
+	handleClick:function(){
+		this.refs.myTextInput.focus();		
+	},	
+	render:function(){
+		return (
+			<div>
+					<input type="text" ref='myTextInput' />
+					<input type="button" name="" id="" value="Focus the text input" onClick={this.handleClick}/>
+			</div>		
+		);
+		
+	}
+});	
+
+ReactDOM.render(
+<MyComponent />,
+document.getElementById('root')
+);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+
