@@ -183,7 +183,7 @@ ReactDOM.render(
 );*/
 
 /****************************事件获取DOM节点*******************************/
-var MyComponent = React.createClass({
+/*var MyComponent = React.createClass({
 	handleClick:function(){
 		this.refs.myTextInput.focus();		
 	},	
@@ -201,15 +201,58 @@ var MyComponent = React.createClass({
 ReactDOM.render(
 <MyComponent />,
 document.getElementById('root')
-);
+);*/
 	
-	
-	
-	
-	
-	
-	
-	
-	
+/*******************状态***************************/	
+//this.state和this.props的区别    this.state 主要是可以变化的属性  而this.props一旦定下就不会变化的情形
+/*var LikeButton = React.createClass({
+	getInitialState:function(){
+		
+		return {liked:false};
+		
+	},	
+	handleClick:function(event){
+		
+		this.setState({liked:!this.state.liked});
+		
+	},	
+	render:function(){
+		var text = this.state.liked?'like':'Do not like';
+		return (
+			<p onClick={this.handleClick}>
+				You {text} this ,please click toggle
+			</p>
+		);
+		
+	}
+});
+
+ReactDOM.render(
+<LikeButton />,
+document.getElementById('root')
+);*/
+
+	const InputComponent = React.createClass({
+		getInitialState:function(){
+			return {value:'Hello'};
+		},
+		handleChange:function(event){
+			this.setState({value:event.target.value});
+			
+		},
+		render:function(){
+			var value=this.state.value;
+			return (
+			<div>
+				<input type="text" value={value}  onChange={this.handleChange}/>
+				<p>{value}</p>
+			</div>			
+			)			
+		}		
+	});
+	ReactDOM.render(
+		<InputComponent />,
+	document.getElementById('root'))
+
 </script>
 
