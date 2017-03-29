@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <!--引入React相关库文件-->
+	  <script src="../lib/js/react.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="../lib/js/react-dom.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="../lib/js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+<div id="example"></div>
+
+<script type="text/babel">
+
+  var ToDoInput = React.createClass({
+    handleClick:function(){
+      var result = this.refs.InputResult.value;
+      this.props.addFunc(result);
+    },
+    render:function(){
+      return <div>
+      <input type="text" ref='InputResult'/>
+      <button onClick={this.handleClick}>Add</button>
+      </div>
+    }
+  })
+
+
+  var ToDoItem = React.createClass({
+    handleClick:function(){
+      this.props.delete(this.props.indexValue);
+    },
+    render:function(){
+      return <li>
+      	 {this.props.value}
+        <button onClick={this.handleClick}>delete</button>       
+      </li>
+    }
+  })
+
+  var ToDoList = React.createClass({
+    displayList:function(){
+      return this.props.lists.map(
+        function(content,index){
+          return <ToDoItem delete={this.props.delFunc}
+          key={index} indexValue={index} value={content}/>
+        }.bind(this)
+      )
+    },
+    render:function(){
+      return <ol>
+      {
+        this.displayList()
+      }
+      </ol>
+    }
+  })
+
+  var ToDoBox = React.createClass({
+    getInitialState:function(){
+      return {list:[]};
+    },
+    funcAdd:function(content){
+      var newList = this.state.list;
+      newList.push(content);
+      this.setState({list:newList});
+      console.log(this.state.list);
+    },
+    funcDelete:function(index){
+      var newList = this.state.list;
+      newList.splice(index,1);
+      this.setState({list:newList});
+    },
+    render:function(){
+      return <div>
+        <h1>待做事项列表</h1>
+        <ToDoInput addFunc={this.funcAdd}></ToDoInput>
+        <ToDoList  delFunc={this.funcDelete} lists={this.state.list}></ToDoList>
+      </div>
+    }
+  })
+
+
+  ReactDOM.render(
+  <ToDoBox/>,
+  document.getElementById('example')
+  );
+
+
+</script>
+
+</body>
+</html>

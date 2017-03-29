@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+	  <meta charset="UTF-8">
+	  <title>React state</title>
+	  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	  <meta name="Description" content=""/>
+	  <meta name="Keywords" content=""/>
+	  <!--引入React相关库文件-->
+	  <script src="../lib/js/react.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="../lib/js/react-dom.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="../lib/js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+	  
+	</head>
+	<body>
+	
+	<div id="example"></div>
+	
+	<script type="text/babel">
+		
+	  var AComponent = React.createClass({
+	    handleChange:function(){
+	        this.props.getTxt(this.refs.myInput.value);
+	    },
+	    render:function(){
+	      return <input type='text'
+	        ref='myInput'
+	        onChange={this.handleChange}/>
+	    }
+	  });
+	
+	  var BComponent = React.createClass({
+	    handleClick:function(){
+	      this.props.getResult();
+	    },
+	    render:function(){
+	      return <button onClick={this.handleClick}>clickMe</button>
+	    }
+	  })
+	
+		//
+	  var MainComponent = React.createClass({
+	    getInitialState:function(){
+	      return {result:''}
+	    },
+	    funcChange:function(arg){
+	      console.log(arg);
+	      this.setState({result:arg});
+	    },
+	    funcClick:function(){
+	      alert(this.state.result);
+	    },
+	    render:function(){
+	      return <div>
+	      <AComponent getTxt={this.funcChange}/>
+	      <BComponent getResult={this.funcClick}/>
+	      </div>
+	    }
+	
+	  })
+	
+	  ReactDOM.render(
+	  <MainComponent/>,
+	  document.getElementById('example')
+	  );
+	
+	</script>
+	
+	</body>
+</html>
