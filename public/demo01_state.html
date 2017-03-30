@@ -6,6 +6,21 @@
   <script src="../lib/js/react.js" type="text/javascript" charset="utf-8"></script>
   <script src="../lib/js/react-dom.js" type="text/javascript" charset="utf-8"></script>
   <script src="../lib/js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+  <style>
+    #example{
+      margin-left: 20%;
+      color:#fff;
+    }
+    button{
+      width: 8rem;
+      height: 3rem;
+      outline: none;
+      border: 0;
+      color:#fff;
+      border:1px solid transparent;
+      background: #01ff70;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,13 +30,27 @@
 
   var SwitchComponent = React.createClass({
     getInitialState:function(){
-      return {switch:false};
+      return {switch:false,colorValue:'#01ff70'};
     },
     handleClick:function(){
+
+      var color=this.getRandomColor();
       this.setState({switch:!this.state.switch});
+      this.setState({colorValue:color});
+    },
+    getRandomColor:function(){
+      var r = Math.floor(Math.random()*256);
+      var g = Math.floor(Math.random()*256);
+      var b = Math.floor(Math.random()*256);
+
+      var r_16 = r.toString(16);
+      var g_16 = g.toString(16);
+      var b_16 = b.toString(16);
+
+      return '#'+r_16+g_16+b_16;
     },
     render:function(){
-      return <button onClick={this.handleClick}>
+      return <button onClick={this.handleClick} style={{background:this.state.colorValue}}>
         {"当前状态为"+this.state.switch}
         </button>
     }

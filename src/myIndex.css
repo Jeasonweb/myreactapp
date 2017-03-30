@@ -1,0 +1,34 @@
+*{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.myCatalog{
+    width: 30%;
+    margin-left:20%;
+}
+.myCatalog li{
+    height:3rem ;
+    line-height:3rem;
+    width: 100%;
+    list-style-position: inside;
+    padding-left: .5rem;
+}
+.myCatalog li >a{
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    color:#444;
+    text-decoration: none;
+}
+a:-webkit-any-link{
+    text-decoration: none;
+}
+.myCatalog li:hover{
+    background: #2ecc40;
+    color:#fff;
+
+}
+.myCatalog li:hover a{
+    color: #fff;
+}

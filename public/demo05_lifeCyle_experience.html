@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title></title>
+  <title>组件的生命周期</title>
   <!--引入React相关库文件-->
 	  <script src="../lib/js/react.js" type="text/javascript" charset="utf-8"></script>
 	  <script src="../lib/js/react-dom.js" type="text/javascript" charset="utf-8"></script>
@@ -16,7 +16,7 @@
 
   var LifeComponent = React.createClass({
     getInitialState:function(){
-      return {opacityValue:0};
+      return {opacityValue:0,colorValue:'#fff'};
     },
     componentWillUpdate:function(props,state){
         console.log(state);
@@ -24,17 +24,30 @@
     componentDidMount:function(){
        setInterval(function(){
           var value = this.state.opacityValue;
-          value+=0.1;
-          if(value > 1)
+          value+=0.05;
+          if(value >=1)
           {
             value = 0;
           }
+          var color = this.getRandomColor();
           this.setState({opacityValue:value});
+          this.setState({colorValue:color});
           console.log(this.state.opacityValue);
        }.bind(this),500);
     },
+    getRandomColor:function(){
+      var r = Math.floor(Math.random()*256);
+      var g = Math.floor(Math.random()*256);
+      var b = Math.floor(Math.random()*256);
+
+      var r_16 = r.toString(16);
+      var g_16 = g.toString(16);
+      var b_16 = b.toString(16);
+
+      return '#'+r_16+g_16+b_16;
+    },
     render:function(){
-      return <div style={{opacity:this.state.opacityValue}}>
+      return <div style={{opacity:this.state.opacityValue,color:this.state.colorValue}}>
         Hello World
       </div>
     }

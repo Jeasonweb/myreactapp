@@ -2,7 +2,7 @@
 <html>
 	<head lang="en">
 	  <meta charset="UTF-8">
-	  <title>React state</title>
+	  <title>组合组件</title>
 	  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	  <meta name="Description" content=""/>
 	  <meta name="Keywords" content=""/>
@@ -13,11 +13,12 @@
 	  
 	</head>
 	<body>
-	
+
 	<div id="example"></div>
 	
 	<script type="text/babel">
-		
+		//通过组合组件的父组件的方法传递将方法传递到子组件当中，
+		// 并将子组件的值作为参数传递回来，跟OC的Block回调函数很相似
 	  var AComponent = React.createClass({
 	    handleChange:function(){
 	        this.props.getTxt(this.refs.myInput.value);
@@ -38,7 +39,7 @@
 	    }
 	  })
 	
-		//
+		//创建一个组合组件
 	  var MainComponent = React.createClass({
 	    getInitialState:function(){
 	      return {result:''}

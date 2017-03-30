@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title></title>
+  <title>组件的生命周期</title>
   <!--引入React相关库文件-->
 	  <script src="../lib/js/react.js" type="text/javascript" charset="utf-8"></script>
 	  <script src="../lib/js/react-dom.js" type="text/javascript" charset="utf-8"></script>
@@ -13,6 +13,11 @@
 <div id="example"></div>
 
 <script type="text/babel">
+  //组件的生命周期分为渲染更新获取数据销毁是个层次
+  //组件的时机：componentWillMount componentDidMount
+  //componentWillUpdate  componentDidUpdate
+  //componentWillReceieveProps componentDidReceieveProps
+  //componentDid
 
   var LifeComponent = React.createClass({
     componentWillMount:function(){
